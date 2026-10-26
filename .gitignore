@@ -1,0 +1,5 @@
+.venv/
+dataset/hagrid-export_1000_images/
+dataset/raw/
+dataset/landmarks/
+models/hand_landmarker.task
