@@ -1,6 +1,5 @@
 from pathlib import Path
 import copy
-import json
 import random
 
 import numpy as np
@@ -18,6 +17,7 @@ from sklearn.metrics import (
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "dataset" / "landmarks"
 MODEL_DIR = ROOT / "models"
+RESULTS_DIR = ROOT / "results"
 
 CLASSES = [
     "fist", "like", "dislike", "one",
@@ -118,6 +118,7 @@ def evaluate(model, loader, criterion):
 def main():
     set_seed(SEED)
     MODEL_DIR.mkdir(parents=True, exist_ok=True)
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
     X_train, y_train = load_data("train")
     X_val, y_val = load_data("val")
@@ -236,7 +237,7 @@ def main():
     }, model_path)
 
     pd.DataFrame(history).to_csv(
-        MODEL_DIR / "training_history.csv",
+        RESULTS_DIR / "training_history.csv",
         index=False,
     )
 
@@ -270,7 +271,7 @@ def main():
         matrix,
         index=CLASSES,
         columns=CLASSES,
-    ).to_csv(MODEL_DIR / "val_confusion_matrix.csv")
+    ).to_csv(RESULTS_DIR / "val_confusion_matrix.csv")
 
     print(f"\nModel saved: {model_path}")
     print("Training completed successfully!")
