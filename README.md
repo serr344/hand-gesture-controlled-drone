@@ -18,8 +18,31 @@ Real-time hand gesture recognition using **MediaPipe, PyTorch, and ONNX Runtime*
 ## Performance
 
 - **Windows:** ~30 FPS
-- **Raspberry Pi 5:** ~20–24 FPS
+- **Raspberry Pi 5:** ~15–24 FPS
 - **ONNX:** 100% prediction agreement with PyTorch
+
+## Installation & Setup
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/serr344/hand-gesture-controlled-drone.git
+cd hand-gesture-controlled-drone
+```
+
+### 2. Create and Activate Virtual Environment
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+```bash
+# For Raspberry Pi
+pip install -r requirements-pi.txt
+
+# For Desktop / Windows
+pip install -r requirements.txt
+```
 
 ## Usage
 

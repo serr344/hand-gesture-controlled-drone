@@ -125,7 +125,7 @@ def main():
     print("Raspberry Pi Gesture Recognition")
     print("ONNX Runtime initialized.")
     print("Drone communication: DISABLED")
-    print("Press Ctrl+C to stop.\n")
+    print("Press 'q' or Ctrl+C to stop.\n")
 
     try:
         with mp.tasks.vision.HandLandmarker.create_from_options(
@@ -228,11 +228,17 @@ def main():
                     )
                     last_print_time = now
 
+                cv2.imshow("Raspberry Pi - Hand Gesture Control", frame)
+                
+                if cv2.waitKey(1) & 0xFF == ord('q'):
+                    break
+
     except KeyboardInterrupt:
         print("\nStopped by user.")
 
     finally:
         camera.release()
+        cv2.destroyAllWindows()
 
         total_time = time.perf_counter() - start_time
         average_fps = (
@@ -242,7 +248,7 @@ def main():
 
         print(f"\nFrames processed: {processed_frames}")
         print(f"Average FPS: {average_fps:.2f}")
-        print("Camera released.")
+        print("Camera released and windows closed.")
 
 
 if __name__ == "__main__":
